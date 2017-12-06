@@ -1,0 +1,38 @@
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+  <div class="container">
+    <div class="navbar-header">
+      <!-- Button for smallest screens -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      <a class="navbar-brand" routerLink="/home" href="#">Books Exchange</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav pull-right">
+        <li class="active"><a href="#" routerLink="home">Home</a></li>
+        <li><a href="#" routerLink="/suggest">Suggest</a></li>
+        <li><a href="#" routerLink="/offers">Exchange offers</a></li>
+        <li><a href="#" routerLink="/books">Books List</a></li>
+        <li><a href="#" routerLink="/about">About</a></li>
+        <li><a href="#" routerLink="/contact">Contact</a></li>
+        <li><a class="btn" *ngIf="!_authService.isLoggedIn()" routerLink="/login"> Sign-In</a></li>
+        <li><a class="btn" *ngIf="!_authService.isLoggedIn()" routerLink="register"> Sign-Up</a></li>
+
+        <li class="dropdown" *ngIf="_authService.isLoggedIn()">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" routerLink="sendedRequests">My Wishs list</a></li>
+            <li><a href="#" routerLink="recievedRequests">My requests</a></li>
+            <li><a href="#" routerLink="userBooks">My books</a></li>
+            <li><a href="#" routerLink="userExchanges">My Exchanges</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#" (click)="logout()"> Sign-Out</a></li>
+          </ul>
+        </li>
+        <li> {{ _authService.getAuthenticatedUser() }} </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</div>
+<!-- /.navbar -->
+
+

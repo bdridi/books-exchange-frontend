@@ -1,0 +1,83 @@
+<header id="head" class="secondary"></header>
+	<!-- container -->
+	<div class="container">
+
+        <ol class="breadcrumb">
+          <li><a href="#" routerLink="home">Home</a></li>
+          <li class="active">Suggest your book</li>
+        </ol>
+
+    		<div class="row">
+
+          <!-- Article main content -->
+          <article class="col-sm-9 maincontent">
+            <header class="page-header">
+              <h1 class="page-title">Suggest your book for exchange</h1>
+            </header>
+
+            <p>
+              Give away your old books for new ones
+            </p>
+            <p>
+              <span class="error-message">{{ errorMessage }} </span>
+              <span class="success-message">{{ successMessage }} </span>
+            </p>
+            <br>
+              <form ngNativeValidate #form="ngForm">
+                <fieldset>
+                  <legend>
+                    Book's informations
+                  </legend>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <input class="form-control input-list" required type="text" name="title" [(ngModel)]="book.title" placeholder="Title" (keyup)="search()">
+                    <ul id="list-group" class="list-group group-list" *ngIf="books?.length > 0">
+                        <li *ngFor="let b of books"  class="list-group-item item-list" (click)="select(b)">
+                          {{ b.title }}
+                        </li>
+                    </ul>
+
+                  </div>
+                  <div class="col-md-6">
+                    <input class="form-control" required name="author" type="text" [(ngModel)]="book.author" placeholder="Author">
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input class="form-control" required name="publishDate" [(ngModel)]="book.publishDate" type="date" placeholder="Publish Date">
+                      </div>
+                    <div class="col-md-6">
+                        <input class="form-control" required name="pages" type="text" [(ngModel)]="book.pages" placeholder="Number of pages">
+                      </div>
+
+                </div>
+              </fieldset>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <textarea class="form-control"  rows="5" required name="description" type="text" [(ngModel)]="book.description" placeholder="Book description"></textarea>
+                      </div>
+                  <div class="col-md-6">
+                      <input class="form-control" required name="preference" type="text" [(ngModel)]="preference" placeholder="Exchange Preferences">
+                   </div>
+
+                </div>
+                <div class="row">
+                   <div class="col">
+                     &nbsp;
+                   </div>
+                </div>
+                <div class="row">
+                  <div class="text-center">
+                    <input class="btn btn-action" type="submit" value="Save" (click)="save(form.valid)">
+                  </div>
+                </div>
+              </form>
+
+          </article>
+          <!-- /Article -->
+        </div>
+</div>
+

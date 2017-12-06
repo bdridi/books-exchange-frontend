@@ -1,0 +1,65 @@
+<header id="head" class="secondary"></header>
+
+	<!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="#" routerLink="home">Home</a></li>
+			<li class="active">Request A book</li>
+		</ol>
+
+		<div class="row">
+
+               <!-- Article main content -->
+               <article class="col-sm-9 maincontent">
+                  <header class="page-header">
+                    <h1 class="page-title">Request the book you choose</h1>
+                  </header>
+
+                  <p>
+                    <span class="error-message">{{ errorMessage }} </span>
+                    <span class="success-message">{{ successMessage }} </span>
+                  </p>
+
+                  <br>
+                    <form ngNativeValidate #form="ngForm">
+                      <fieldset>
+                        <legend>
+                          Your books
+                        </legend>
+
+                      <div class="row">
+                        <div class="col-md-10">
+                          <select cllegendass="form-control input-list" required name="exA" [(ngModel)]="request.exA">
+                            <option value="-1"> Please select a book </option>
+                            <option id="list-group" *ngFor="let offer of userOffers" value="{{offer.id}}">
+                              {{ offer?.book.title }}
+                          </option>
+                           </select>
+                        </div>
+                      </div>
+                      </fieldset>
+                      <br>
+                      <div class="row">
+                          <div class="col-md-10">
+                              <textarea class="form-control"  rows="5" required name="message" type="text" [(ngModel)]="request.message" placeholder="Message"></textarea>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                         <div class="col">
+                           &nbsp;
+                         </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="text-center">
+                          <input class="btn btn-action" type="submit" value="Save" (click)="save(form.valid)">
+                        </div>
+                      </div>
+                    </form>
+
+                </article>
+                <!-- /Article -->
+    </div>
+  </div>

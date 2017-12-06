@@ -1,0 +1,54 @@
+<header id="head" class="secondary"></header>
+
+	<!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="#" routerLink="home">Home</a></li>
+			<li class="active">My recieved requests</li>
+    </ol>
+    {{ successMessage }}
+
+    <div class="alert alert-warning" *ngIf="requests?.length == 0">
+      <strong>Sorry !</strong> You haven't recieved any request yet.
+    </div>
+
+    <div class="row" *ngIf="requests?.length > 0">
+      <div class="panel panel-default">
+        <table class="table table-striped">
+          <tr>
+            <td> From </td>
+            <td> Offering </td>
+            <td></td>
+
+          </tr>
+          <tr *ngFor="let request of requests">
+              <td>{{request?.exA.user.name}}</td>
+              <td><a href="#" [routerLink]="['/bookDetails']" [queryParams]="{ id : request?.exA.book.id }" >{{request?.exA.book.title}}</a></td>
+              <td>
+                <button class="btn btn-success btn-sm" (click)="accept(request.id)"> Accept </button>
+                <button class="btn btn-danger btn-sm" (click)="decline(request.id)"> Decline </button>
+
+              </td>
+
+          </tr>
+        </table>
+
+       <!--  Pagination  -->
+        <nav aria-label="">
+          <ul class="pagination">
+            <li [ngClass]="{'disabled' : pageInformations?.number == 0}"><a class="btn" (click)="fetchRequests(pageInformations?.number - 1)" aria-label="Previous"><span aria-hidden="true">Previous</span></a></li>
+
+            <li [ngClass]="{'active' : pageInformations?.number == pageIndex}" *ngFor="let pageIndex of pagesArray" ><a class="btn" (click)="fetchRequests(pageIndex)">{{ pageIndex }} <span class="sr-only">(current)</span></a></li>
+
+            <li [ngClass]="{'disabled' : pageInformations?.number == pageInformations?.totalPages - 1}"><a class="btn" (click)="fetchRequests(pageInformations?.number + 1)" aria-label="next"><span aria-hidden="true">Next</span></a></li>
+
+          </ul>
+        </nav>
+
+
+        </div>
+    </div>
+  </div>
+
+

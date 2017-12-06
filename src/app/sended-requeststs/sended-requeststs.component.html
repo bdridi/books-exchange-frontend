@@ -1,0 +1,47 @@
+<header id="head" class="secondary"></header>
+
+	<!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="#" routerLink="home">Home</a></li>
+			<li class="active">My Sended requests</li>
+    </ol>
+    <div class="alert alert-warning" *ngIf="requests?.length == 0">
+      <strong>Sorry !</strong> You haven't sended any request yet.
+    </div>
+
+    <div class="row" *ngIf="requests?.length > 0">
+      <div class="panel panel-default">
+        <table class="table table-striped">
+          <tr>
+            <td> To </td>
+            <td> Requesting </td>
+            <td> Offering </td>
+          </tr>
+          <tr *ngFor="let request of requests" >
+              <td>{{request?.exB.user.name}}</td>
+              <td><a href="#" [routerLink]="['/bookDetails']" [queryParams]="{ id : request?.exB.book.id }" >{{request?.exB.book.title}}</a></td>
+              <td><a href="#" [routerLink]="['/bookDetails']" [queryParams]="{ id : request?.exA.book.id }" >{{request?.exA.book.title}}</a></td>
+
+          </tr>
+        </table>
+
+       <!--  Pagination  -->
+        <nav aria-label="">
+          <ul class="pagination">
+            <li [ngClass]="{'disabled' : pageInformations?.number == 0}"><a class="btn" (click)="fetchRequests(pageInformations?.number - 1)" aria-label="Previous"><span aria-hidden="true">Previous</span></a></li>
+
+            <li [ngClass]="{'active' : pageInformations?.number == pageIndex}" *ngFor="let pageIndex of pagesArray" ><a class="btn" (click)="fetchRequests(pageIndex)">{{ pageIndex }} <span class="sr-only">(current)</span></a></li>
+
+            <li [ngClass]="{'disabled' : pageInformations?.number == pageInformations?.totalPages - 1}"><a class="btn" (click)="fetchRequests(pageInformations?.number + 1)" aria-label="next"><span aria-hidden="true">Next</span></a></li>
+
+          </ul>
+        </nav>
+
+
+        </div>
+    </div>
+  </div>
+
+

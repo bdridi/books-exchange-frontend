@@ -1,0 +1,83 @@
+<header id="head" class="secondary"></header>
+
+	<!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="#" routerLink="home">Home</a></li>
+			<li class="active">Registration</li>
+		</ol>
+
+		<div class="row">
+
+			<!-- Article main content -->
+			<article class="col-xs-12 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Registration</h1>
+				</header>
+				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<h3 class="thin text-center">Register a new account</h3>
+							<p class="text-center text-muted">If you have already an account, <a href="#" routerLink="/login">Login</a> and trade your old books </p>
+              <p>
+                 <span class="error-message"> {{ errorMessage }}</span>
+                 <span class="success-message">{{ succesMessage}} </span>
+              </p>
+              <hr>
+							<form ngNativeValidate #form="ngForm">
+								<div class="top-margin">
+									<label>Username<span class="text-danger">*</span></label>
+									<input type="text" required class="form-control" [(ngModel)]="user.username" name="username">
+								</div>
+								<div class="top-margin">
+									<label>Name<span class="text-danger">*</span></label>
+									<input type="text" required class="form-control" [(ngModel)]="user.name" name="name">
+								</div>
+								<div class="top-margin">
+									<label>Email Address <span class="text-danger">*</span></label>
+									<input type="email" required class="form-control" [(ngModel)]="user.email" name="email">
+                </div>
+
+                <div class="top-margin">
+									<label>Address <span class="text-danger">*</span></label>
+									<input type="text" required class="form-control" [(ngModel)]="user.address" name="address">
+								</div>
+
+								<div class="row top-margin">
+									<div class="col-sm-6">
+										<label>Password <span class="text-danger">*</span></label>
+										<input type="password" minlength="3" #password="ngModel" required class="form-control" [(ngModel)]="user.password" name="password">
+                  </div>
+									<div class="col-sm-6">
+										<label>Confirm Password <span class="text-danger">*</span></label>
+										<input type="password" required class="form-control" [(ngModel)]="pwd" name="pwd">
+									</div>
+                </div>
+                <div class="row">
+                   <div *ngIf="password.dirty && password.errors" >
+                      <span [hidden]="!password.errors.minlength" class="error-message">
+                          Your password needs to be at least 3 characters.
+                      </span>
+                   </div>
+                </div>
+								<hr>
+								<div class="row">
+									<div class="col-lg-8">
+
+									</div>
+									<div class="col-lg-4 text-right">
+										<button class="btn btn-action" (click)="register(form.valid)" type="submit">Register</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+
+			</article>
+			<!-- /Article -->
+
+		</div>
+	</div>	<!-- /container -->

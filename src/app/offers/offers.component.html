@@ -1,0 +1,42 @@
+<header id="head" class="secondary"></header>
+
+	<!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="#" routerLink="/home" >Home</a></li>
+			<li class="active">Exchange Offers</li>
+		</ol>
+
+		<div class="row">
+
+      <div class="panel panel-default">
+        <table class="table table-striped">
+          <tr>
+            <th>User</th>
+            <th>Book</th>
+            <th>Preference</th>
+            <th> Action </th>
+          </tr>
+          <tr *ngFor="let offer of allOffers">
+              <td>{{offer?.user.username}}</td>
+              <td>{{offer?.book.title}}</td>
+              <td>{{offer?.preference}}</td>
+              <td><a href="#" [routerLink]="['/request']" [queryParams]="{ exB : offer.id}"> Request this book : {{ offer.id}} </a></td>
+          </tr>
+        </table>
+
+         <!--  Pagination  -->
+         <nav aria-label="">
+          <ul class="pagination">
+            <li [ngClass]="{'disabled' : pageInformations.number == 0}"><a class="btn" (click)="fetchAllOffers(pageInformations.number - 1)" aria-label="Previous"><span aria-hidden="true">Previous</span></a></li>
+
+            <li [ngClass]="{'active' : pageInformations.number == pageIndex}" *ngFor="let pageIndex of pagesArray" ><a class="btn" (click)="fetchAllOffers(pageIndex)">{{ pageIndex }} <span class="sr-only">(current)</span></a></li>
+
+            <li [ngClass]="{'disabled' : pageInformations.number == pageInformations.totalPages - 1}"><a class="btn" (click)="fetchAllOffers(pageInformations.number + 1)" aria-label="next"><span aria-hidden="true">Next</span></a></li>
+
+          </ul>
+        </nav>
+        </div>
+    </div>
+  </div>

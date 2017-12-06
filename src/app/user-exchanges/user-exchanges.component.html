@@ -1,0 +1,61 @@
+<header id="head" class="secondary"></header>
+
+	<!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="#" routerLink="home">Home</a></li>
+			<li class="active">Exchanges</li>
+    </ol>
+    <div class="alert alert-warning" *ngIf="exchanges?.length == 0">
+      <strong>Sorry !</strong> You haven't done any exchange yet.
+    </div>
+
+    <div class="row" *ngIf="exchanges?.length > 0">
+      <div class="panel panel-default">
+        <table class="table table-striped">
+          <tr>
+            <td> Book Owner </td>
+            <td> Getting  </td>
+            <td> Giving </td>
+            <td> Send your book To </td>
+          </tr>
+          <tr *ngFor="let exchange of exchanges" >
+              <td> <span *ngIf="exchange?.request.exA.user.username !== _authService.getAuthenticatedUser()"> {{exchange?.request.exA.user.name}} </span>
+                   <span  *ngIf="exchange?.request.exB.user.username !== _authService.getAuthenticatedUser()"> {{exchange?.request.exB.user.name}} </span>
+              </td>
+              <td> <span *ngIf="exchange?.request.exA.user.username !== _authService.getAuthenticatedUser()"> <a href="#" [routerLink]="['/bookDetails']" [queryParams]="{ id : exchange?.request.exA.book.id }" >{{exchange.request.exA.book.title}}</a> </span>
+                   <span  *ngIf="exchange?.request.exB.user.username !== _authService.getAuthenticatedUser()"> <a href="#" [routerLink]="['/bookDetails']" [queryParams]="{ id : exchange?.request.exB.book.id }" >{{exchange.request.exB.book.title}}</a></span>
+              </td>
+
+              <td> <span *ngIf="exchange?.request.exA.user.username == _authService.getAuthenticatedUser()"> <a href="#" [routerLink]="['/bookDetails']" [queryParams]="{ id : exchange?.request.exA.book.id }" >{{exchange.request.exA.book.title}}</a> </span>
+                   <span *ngIf="exchange?.request.exB.user.username == _authService.getAuthenticatedUser()"> <a href="#" [routerLink]="['/bookDetails']" [queryParams]="{ id : exchange?.request.exB.book.id }" >{{exchange.request.exB.book.title}}</a></span>
+              </td>
+
+              <td> <span *ngIf="exchange?.request.exA.user.username !== _authService.getAuthenticatedUser()"> {{exchange.request.exA.user.address}} </span>
+                   <span *ngIf="exchange?.request.exB.user.username !== _authService.getAuthenticatedUser()"> {{exchange.request.exB.user.address}}</span>
+           </td>
+
+
+
+          </tr>
+        </table>
+
+       <!--  Pagination  -->
+        <nav aria-label="">
+          <ul class="pagination">
+            <li [ngClass]="{'disabled' : pageInformations?.number == 0}"><a class="btn" (click)="fetchexchanges(pageInformations?.number - 1)" aria-label="Previous"><span aria-hidden="true">Previous</span></a></li>
+
+            <li [ngClass]="{'active' : pageInformations?.number == pageIndex}" *ngFor="let pageIndex of pagesArray" ><a class="btn" (click)="fetchexchanges(pageIndex)">{{ pageIndex }} <span class="sr-only">(current)</span></a></li>
+
+            <li [ngClass]="{'disabled' : pageInformations?.number == pageInformations?.totalPages - 1}"><a class="btn" (click)="fetchexchanges(pageInformations?.number + 1)" aria-label="next"><span aria-hidden="true">Next</span></a></li>
+
+          </ul>
+        </nav>
+
+
+        </div>
+    </div>
+  </div>
+
+

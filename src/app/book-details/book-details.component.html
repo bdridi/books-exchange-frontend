@@ -1,0 +1,49 @@
+<header id="head" class="secondary"></header>
+
+	<!-- container -->
+	<div class="container">
+
+		<ol class="breadcrumb">
+			<li><a href="#" routerLink="home">Home</a></li>
+			<li class="active">About</li>
+		</ol>
+
+		<div class="row">
+
+			<!-- Article main content -->
+			<article class="col-sm-8 maincontent">
+				<header class="page-header">
+					<h1 class="page-title">Book's details</h1>
+				</header>
+				<h3>{{ book?.title}}</h3>
+        <p><img src="assets/images/mac.jpg" alt="" class="img-rounded pull-right" width="300" >
+        {{ book?.description }}
+        </p>
+        <p>
+          &nbsp;
+        </p>
+        <p>
+          &nbsp;
+        </p>
+
+			</article>
+			<!-- /Article -->
+
+			<!-- Sidebar -->
+			<aside class="col-sm-4 sidebar sidebar-right">
+
+				<div class="widget">
+					<h4>More</h4>
+					<ul class="list-unstyled list-spaces">
+						<li><a href="">Author</a><br><span class="small text-muted">{{ book?.author}}</span></li>
+						<li><a href="">Number of pages</a><br><span class="small text-muted">{{ book?.pages }}</span></li>
+						<li><a href="">Publish date</a><br><span class="small text-muted">{{ book?.publishDate }}</span></li>
+						<li><a href="">Publisher</a><br><span class="small text-muted"> {{ book?.publisher }} </span></li>
+					</ul>
+				</div>
+
+			</aside>
+			<!-- /Sidebar -->
+
+		</div>
+	</div>	<!-- /container -->

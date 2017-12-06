@@ -19,9 +19,18 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../src/assets/css/bootstrap-theme.css",
+        "../node_modules/font-awesome/css/font-awesome.css"
       ],
-      "scripts": [],
+      "scripts": ["../src/assets/js/google-map.js",
+        "../src/assets/js/headroom.min.js",
+        "../src/assets/js/html5shiv.js",
+        "../src/assets/js/jQuery.headroom.min.js",
+        "../src/assets/js/respond.min.js",
+        "../src/assets/js/template.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

@@ -1,4 +1,10 @@
-# BooksExchangeFrontend
+
+
+# BooksExchange-Project-Frontend
+## Angular 5
+
+## Backend :
+ ` https://github.com/bdridi/books-exchange.git`  
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
 
